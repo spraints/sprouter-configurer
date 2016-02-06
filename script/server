@@ -1,0 +1,7 @@
+#!/bin/sh
+
+set -e
+
+script/bootstrap
+
+exec bin/rails server -b 127.0.0.1 -p 4433
