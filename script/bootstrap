@@ -3,13 +3,18 @@
 set -e
 
 if [ "`uname -s`" = "Darwin" ]; then
-  brew bundle check >&/dev/null || {
-    echo "Updating Homebrew dependences"
-    brew update >/dev/null
-    brew bundle
-  }
+  if ! script/checksum check-brew; then
+    brew bundle check >&/dev/null || {
+      echo "Updating Homebrew dependences"
+      brew update >/dev/null
+      brew bundle
+    }
 
-  brew bootstrap-rbenv-ruby
+    echo "Ensuring that ruby is installed"
+    brew bootstrap-rbenv-ruby
+
+    script/checksum record-brew
+  fi
 fi
 
 if ! script/checksum check-gems; then

@@ -4,6 +4,10 @@ set -e
 
 main() {
   case "$1" in
+    check-brew)
+      brew check ;;
+    record-brew)
+      brew record ;;
     check-gems)
       gems check ;;
     record-gems)
@@ -34,7 +38,7 @@ record() {
 }
 
 sum() {
-  for f in "$@"; do
+  for f in "$@" script/bootstrap script/checksum; do
     cat_item "$1"
   done | md5
 }
@@ -54,8 +58,12 @@ cat_item() {
 ####
 # Modes
 
+brew() {
+  "$1" .bundle/brew-checksum Brewfile .ruby-version
+}
+
 gems() {
-  "$1" .bundle/gem-checksum Gemfile Gemfile.lock
+  "$1" .bundle/gem-checksum Gemfile Gemfile.lock .ruby-version
 }
 
 npm() {
