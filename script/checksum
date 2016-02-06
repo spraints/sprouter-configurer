@@ -1,0 +1,65 @@
+#!/bin/sh
+
+set -e
+
+main() {
+  case "$1" in
+    check-gems)
+      gems check ;;
+    record-gems)
+      gems record ;;
+    check-npm)
+      npm check ;;
+    record-npm)
+      npm record ;;
+    *)
+      echo "Usage: script/checksum {check,record}-{gems,npm}"
+      false ;;
+  esac
+}
+
+####
+# Ops
+
+check() {
+  checksum_file="$1"; shift
+  test -f "${checksum_file}"
+  test "`cat ${checksum_file}`" = `sum "$@"`
+}
+
+record() {
+  checksum_file="$1"; shift
+  mkdir -p `dirname ${checksum_file}`
+  sum "$@" > ${checksum_file}
+}
+
+sum() {
+  for f in "$@"; do
+    cat_item "$1"
+  done | md5
+}
+
+cat_item() {
+  if [ -d "$1" ]; then
+    tar cf - "$1"
+  else
+    if [ -f "$1" ]; then
+      cat "$1"
+    else
+      echo "$1"
+    fi
+  fi
+}
+
+####
+# Modes
+
+gems() {
+  "$1" .bundle/gem-checksum Gemfile Gemfile.lock
+}
+
+npm() {
+  "$1" .bundle/npm-checksum package.json node_modules
+}
+
+main "$@"

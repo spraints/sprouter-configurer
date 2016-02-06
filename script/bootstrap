@@ -1,0 +1,23 @@
+#!/bin/sh
+
+set -e
+
+if [ "`uname -s`" = "Darwin" ]; then
+  brew bundle check >&/dev/null || {
+    echo "Updating Homebrew dependences"
+    brew update >/dev/null
+    brew bundle
+  }
+
+  brew bootstrap-rbenv-ruby
+fi
+
+if ! script/checksum check-gems; then
+  bundle --path .bundle
+  script/checksum record-gems
+fi
+
+if ! script/checksum check-npm; then
+  npm install
+  script/checksum record-npm
+fi
