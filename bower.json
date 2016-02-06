@@ -1,0 +1,24 @@
+{
+  "name": "pfrails",
+  "description": "This README would normally document whatever steps are necessary to get the application up and running.",
+  "main": "index.js",
+  "authors": [
+    "Matt Burke <spraints@gmail.com>"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/bower",
+    "test",
+    "tests"
+  ],
+  "private": true,
+  "dependencies": {
+    "jquery-ujs": "^1.2.0",
+    "jquery": "^2.2.0"
+  }
+}

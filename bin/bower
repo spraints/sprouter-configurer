@@ -1,0 +1,6 @@
+#!/bin/sh
+
+set -e
+
+script/bootstrap
+exec node_modules/.bin/bower "$@"
