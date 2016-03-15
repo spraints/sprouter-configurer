@@ -14,8 +14,13 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   </head>
   <body>
-    <h1>Zig or AT&T?</h1>
+    <div class="container">
+      <div class="page-header">
+        <h1>Zig or AT&amp;T</h1>
+        <p class="lead">Something zing-y</p>
+      </div>
 
-    <%= yield %>
+      <%= yield %>
+    </div>
   </body>
 </html>
