@@ -19,6 +19,7 @@
   "private": true,
   "dependencies": {
     "jquery-ujs": "^1.2.0",
-    "jquery": "^2.2.0"
+    "jquery": "^2.2.0",
+    "bootstrap": "^3.3.6"
   }
 }
