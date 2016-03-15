@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  requested_from: MyString
+  ip: MyString
+  requested_mode: MyString
+  until: 2016-03-15 16:00:39
+
+two:
+  requested_from: MyString
+  ip: MyString
+  requested_mode: MyString
+  until: 2016-03-15 16:00:39
