@@ -1,4 +1,8 @@
 class Host
+  def self.for_request(request)
+    new(ip: request.ip)
+  end
+
   def initialize(ip:)
     @ip = ip
   end
@@ -6,18 +10,7 @@ class Host
   attr_reader :ip
 
   def connection_mode
-    connection_mode_class.new
-  end
-
-  def connection_mode_class
-    case active_requests.first.try(:requested_mode)
-    when "preferred"
-      ConnectionMode::Preferred
-    when "turbo"
-      ConnectionMode::Turbo
-    else
-      ConnectionMode::Normal
-    end
+    ConnectionMode.new(active_requests.first.try(:requested_mode))
   end
 
   def active_requests

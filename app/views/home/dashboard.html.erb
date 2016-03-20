@@ -1,13 +1,13 @@
 <h3><%= @host.ip %></h3>
 <p>Your computer's IP address is <%= @host.ip %>. Its connection is <strong><%= @host.connection_mode %></strong>.</p>
 
-<%= form_for :routing_request do |f| %>
+<%= form_tag "connection_mode", :method => :put do %>
   <h4>Change your connection</h4>
   <div>
     <div class="btn-group" data-toggle="buttons">
       <% [ ConnectionMode::Normal, ConnectionMode::Preferred, ConnectionMode::Turbo ].each do |mode| %>
         <label class="btn btn-primary">
-          <%= f.radio_button :requested_mode, mode::NAME, :class => "js-connection-mode" %>
+          <%= radio_button_tag :requested_mode, mode::NAME, false, :class => "js-connection-mode" %>
           <%= mode::NAME %>
         </label>
       <% end %>
@@ -23,7 +23,7 @@
           ["forever", "forever"],
         ].each do |duration, label| %>
           <label class="btn btn-primary">
-            <%= f.radio_button :duration, duration, :class => "js-until" %>
+            <%= radio_button_tag :duration, duration, false, :class => "js-until" %>
             <%= label %>
           </label>
         <% end %>
@@ -34,5 +34,3 @@
     <input type="submit" value="make it so" class="btn btn-success js-routing-req-submit" disabled>
   </div>
 <% end %>
-
-<%= debug @host.requests %>
