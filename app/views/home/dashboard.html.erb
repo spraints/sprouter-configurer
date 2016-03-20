@@ -36,3 +36,18 @@
     <input type="submit" value="make it so" class="btn btn-success js-routing-req-submit" disabled>
   </div>
 <% end %>
+
+<h3>Requests</h3>
+<table>
+  <tr>
+    <th>Mode</th>
+    <th>Until</th>
+  </tr>
+  <% @host.active_requests.each_with_index do |req, i| %>
+    <tr class="routing-req-<%=i%>">
+      <td><%= req.requested_mode %></td>
+      <td><%= req.until %></td>
+    </tr>
+    <% break if req.until > Time.now + 1.year %>
+  <% end %>
+</table>
