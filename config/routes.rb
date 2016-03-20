@@ -6,4 +6,5 @@ Rails.application.routes.draw do
 
   root :to => "home#dashboard"
   put "connection_mode" => "home#set_mode"
+  get "sprouter.conf" => "home#sprouter_config"
 end

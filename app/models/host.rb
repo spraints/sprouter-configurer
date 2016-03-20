@@ -1,4 +1,8 @@
 class Host
+  def self.all
+    RoutingRequest.uniq.pluck(:ip).map { |ip| new(ip: ip) }
+  end
+
   def self.for_request(request)
     new(ip: request.ip)
   end
