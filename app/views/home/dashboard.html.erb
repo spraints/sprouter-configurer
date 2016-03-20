@@ -1,4 +1,38 @@
-<h3>Your computer: XX.YY.ZZ.AA</h3>
-<button class="btn btn-lg btn-primary">Make me normal</button>
-<button class="btn btn-lg btn-success">Make me faster if necessary for N hours</button>
-<button class="btn btn-lg btn-warning">Make me faster unconditionally for N hours</button>
+<h3><%= @host.ip %></h3>
+<p>Your computer's IP address is <%= @host.ip %>. Its connection is <strong><%= @host.connection_mode %></strong>.</p>
+
+<%= form_for :routing_request do |f| %>
+  <h4>Change your connection</h4>
+  <div>
+    <div class="btn-group" data-toggle="buttons">
+      <% [ ConnectionMode::Normal, ConnectionMode::Preferred, ConnectionMode::Turbo ].each do |mode| %>
+        <label class="btn btn-primary">
+          <%= f.radio_button :requested_mode, mode::NAME, :class => "js-connection-mode" %>
+          <%= mode::NAME %>
+        </label>
+      <% end %>
+    </div>
+    <div class="js-until-options">
+      for
+      <div class="btn-group" data-toggle="buttons">
+        <% [
+          ["1h", "an hour"],
+          ["4h", "4 hours"],
+          ["8h", "8 hours"],
+          ["1d", "a day"],
+          ["forever", "forever"],
+        ].each do |duration, label| %>
+          <label class="btn btn-primary">
+            <%= f.radio_button :duration, duration, :class => "js-until" %>
+            <%= label %>
+          </label>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div>
+    <input type="submit" value="make it so" class="btn btn-success js-routing-req-submit" disabled>
+  </div>
+<% end %>
+
+<%= debug @host.requests %>
