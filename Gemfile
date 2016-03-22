@@ -1,8 +1,22 @@
 source 'https://rubygems.org'
 
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '>= 5.0.0.beta1.1', '< 5.1'
+# Like rails, but split up so that I can drop dependencies that I don't want.
+%w(
+  actioncable
+  actionmailer
+  actionpack
+  actionview
+  activejob
+  activemodel
+  activerecord
+  activesupport
+  railties
+  ).each do |name|
+  gem name, '>= 5.0.0.beta1.1', '< 5.1'
+end
+gem "sprockets-rails", ">= 2.0.0"
+
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Uglifier as compressor for JavaScript assets
