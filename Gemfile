@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 
 # Like rails, but split up so that I can drop dependencies that I don't want.
 %w(
-  actioncable
   actionmailer
   actionpack
   actionview
