@@ -12,7 +12,7 @@ source 'https://rubygems.org'
   activesupport
   railties
   ).each do |name|
-  gem name, '>= 5.0.0.beta1.1', '< 5.1'
+  gem name, '>= 5.0.0.beta3', '< 5.1'
 end
 gem "sprockets-rails", ">= 2.0.0"
 
@@ -48,4 +48,6 @@ group :development do
   gem 'web-console', '~> 3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  # `bundle viz`
+  gem 'ruby-graphviz'
 end
