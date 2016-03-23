@@ -1,20 +1,6 @@
 source 'https://rubygems.org'
 
-
-# Like rails, but split up so that I can drop dependencies that I don't want.
-%w(
-  actionmailer
-  actionpack
-  actionview
-  activejob
-  activemodel
-  activerecord
-  activesupport
-  railties
-  ).each do |name|
-  gem name, '>= 5.0.0.beta3', '< 5.1'
-end
-gem "sprockets-rails", ">= 2.0.0"
+gem 'rails', '>= 5.0.0.beta3', '< 5.1'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
