@@ -1,9 +1,10 @@
 <%= link_to "sprouter.conf", "sprouter.conf" %>
 
 <h3><%= @host.ip %></h3>
-<p>Your computer's IP address is <%= @host.ip %>. Its connection is <strong><%= @host.connection_mode %></strong>.</p>
+<p>The connection mode for <%= @host.ip %> is <strong><%= @host.connection_mode %></strong>.</p>
 
 <%= form_tag "connection_mode", :method => :put do %>
+  <%= hidden_field_tag :ip, @host.ip %>
   <h4>Change your connection</h4>
   <div>
     <div class="btn-group" data-toggle="buttons">

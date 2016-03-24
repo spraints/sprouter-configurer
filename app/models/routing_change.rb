@@ -1,6 +1,6 @@
 class RoutingChange
   def self.build(request:, attrs:)
-    host = Host.for_request(request)
+    host = attrs[:ip] ? Host.new(ip: attrs[:ip]) : Host.for_request(request)
     routing_request = host.requests.build
     routing_request.requested_by = request.ip
     routing_request.requested_mode = ConnectionMode.new(attrs[:requested_mode])

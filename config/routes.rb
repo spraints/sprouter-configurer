@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   # mount ActionCable.server => '/cable'
 
   root :to => "home#dashboard"
+  get ":addr", :to => "home#friend", :constraints => { :addr => /\d+\.\d+\.\d+\.\d+/ }
+
   put "connection_mode" => "home#set_mode"
   get "sprouter.conf" => "home#sprouter_config"
 end
