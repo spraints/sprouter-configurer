@@ -15,7 +15,7 @@ Tables
 =======
 traffic
 -------
-#{`tail -f /var/lib/collectd/csv/zig-or-att/interface-re*/if_{octets,packets}-#{Time.now.strftime("%Y-%m-%d")} 2>&1`}
+#{`tail /var/lib/collectd/csv/zig-or-att/interface-re*/if_{octets,packets}-#{Time.now.strftime("%Y-%m-%d")} 2>&1`}
 
 STAT
   end
