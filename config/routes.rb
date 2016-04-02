@@ -9,4 +9,5 @@ Rails.application.routes.draw do
 
   put "connection_mode" => "home#set_mode"
   get "sprouter.conf" => "home#sprouter_config"
+  get "stat" => "hacky#stat"
 end
