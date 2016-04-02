@@ -1,22 +1,11 @@
 # The stuff that should be summarily deleted
 class HackyController < ApplicationController
   def stat
-    render :text => <<STAT, :content_type => "text/plain"
-==
-df
---
-#{`df`}
-
-======
-Tables
-------
-#{`pfctl -vv -s Tables 2>&1`}
-
-=======
-traffic
--------
-#{`tail /var/lib/collectd/csv/zig-or-att/interface-re*/if_{octets,packets}-#{Time.now.strftime("%Y-%m-%d")} 2>&1`}
-
-STAT
+    stat_script = Rails.root.join("stats.sh")
+    if stat_script.executable?
+      render :text => `#{stat_script} 2>&1`, :content_type => "text/plain"
+    else
+      render :status => 404, :text => "not found\r\n"
+    end
   end
 end
