@@ -19,17 +19,13 @@
     <div class="js-until-options">
       for
       <div class="btn-group" data-toggle="buttons">
+        <%= duration_button "30min" %>
+        <% [1, 2, 3, 4, 8].each do |h| %><%= duration_button "#{h}h" %><% end %>
         <% [
-          ["1h", "an hour"],
-          ["4h", "4 hours"],
-          ["8h", "8 hours"],
           ["1d", "a day"],
           ["forever", "forever"],
         ].each do |duration, label| %>
-          <label class="btn btn-primary">
-            <%= radio_button_tag :duration, duration, false, :class => "js-until" %>
-            <%= label %>
-          </label>
+          <%= duration_button duration, label %>
         <% end %>
       </div>
     </div>
