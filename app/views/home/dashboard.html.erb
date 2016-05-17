@@ -41,10 +41,14 @@
     <th>Mode</th>
     <th>Until</th>
   </tr>
+  <tr>
+    <td>now</td>
+    <td><%= Time.now %></td>
+  </tr>
   <% @host.active_requests.each_with_index do |req, i| %>
     <tr class="routing-req-<%=i%>">
       <td><%= req.requested_mode %></td>
-      <td><%= req.until %></td>
+      <td><%= req.until.localtime %></td>
     </tr>
     <% break if req.until > Time.now + 1.year %>
   <% end %>
