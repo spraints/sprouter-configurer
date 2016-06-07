@@ -12,6 +12,8 @@ class RoutingChange
 
   def self.parse_duration(duration)
     case duration
+    when /\A(\d+)(m|min|minute|minutes)\z/
+      $1.to_i.minutes
     when /\A(\d+)(h|hour|hours)\z/
       $1.to_i.hours
     when /\A(\d+)(d|day|days)\z/
