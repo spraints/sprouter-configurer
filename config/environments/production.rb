@@ -53,8 +53,8 @@ Rails.application.configure do
   # config.log_tags = [ :subdomain, :request_id ]
 
   # Use a different logger for distributed setups.
-  # require 'syslog/logger'
-  # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
+  require 'syslog/logger'
+  config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'sprouter-config')
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
